@@ -10,18 +10,18 @@
 char hello[] = "Hello World!\r\n";
 char didit[] = "Did it!\r\n";
 
-static void nop(
-  returncode_t ret __attribute__((unused)),
-  uint32_t     bytes_written __attribute__((unused))) {}
+static void nop(returncode_t ret __attribute__((unused)),
+                uint32_t bytes_written __attribute__((unused))) {}
 
 int main(void) {
 
   memop(0, 536907776);
 
-  // libtock_console_write((uint8_t*) hello, strlen(hello), nop);
+  libtock_console_write((uint8_t *)hello, strlen(hello), nop);
   // Because we used the async method (as opposed to something synchronous,
-  // such as printf), we must explicitly wait for the asynchronous write to complete.
-  // yield();
+  // such as printf), we must explicitly wait for the asynchronous write to
+  // complete.
+  yield();
   // Now we are done.
   return 0;
 }
